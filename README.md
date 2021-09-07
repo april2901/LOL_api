@@ -1,1 +1,1 @@
-<h1>practice LOL api</h1>
+롤api로 api 연습 
