@@ -1,10 +1,17 @@
 import requests
 import time
+import sys
 
-api_key='RGAPI-7d0b0900-f58c-4de8-8e95-4d6eb2fc959a'
+try:
+    color = sys.stdout.shell
+except AttributeError:
+    raise RuntimeError("Use IDLE")
 
 
-namelist=["로지택키보드","샘호네모동그라미"]
+api_key=''
+
+
+namelist=[] #need full name
 
 while(1):
     for name in namelist:
@@ -17,6 +24,7 @@ while(1):
             r.json()['gameId']
         except KeyError:
             print(name+': X    ', end='')
+            #color.write(name+": X    ","COMMENT")
             time.sleep(3)
             continue
     
@@ -29,6 +37,7 @@ while(1):
             gm='우르프'
         else:
             gm='??'
-        print(name+': '+gm+'     ', end='')
+        #print(name+': '+gm+'     ', end='')
+        color.write(name+":"+gm+"    ","COMMENT")
         time.sleep(3)
-        print()
+    print()
