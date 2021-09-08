@@ -1,3 +1,1 @@
-#롤 api 연습
-
-롤 api 
+api key 와 namelist는 사용자에 맞게 입력
