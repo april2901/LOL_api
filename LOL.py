@@ -8,10 +8,10 @@ except AttributeError:
     raise RuntimeError("Use IDLE")
 
 
-api_key=''
+api_key='RGAPI-47839727-1f0b-48bc-b869-56964bde85d8'
 
-
-namelist=[] #need full name
+my_name=["april2901"]
+namelist=["로지택키보드","샘호네모동그라미", "롤체나해야지"] #need full name
 
 while(1):
     for name in namelist:
@@ -40,4 +40,16 @@ while(1):
         #print(name+': '+gm+'     ', end='')
         color.write(name+":"+gm+"    ","COMMENT")
         time.sleep(3)
+
+    
+        a="https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name+'?api_key='+api_key
+        r=requests.get(a)
+        id=r.json()['id']
+        b="https://kr.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/"+id+"?api_key="+api_key
+        r=requests.get(b)
+        try:
+            a=r.json()['gameId']
+        except KeyError:
+            continue
+        print(a)
     print()
