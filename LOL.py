@@ -14,45 +14,6 @@ my_name="april2901"
 namelist=["로지택키보드","샘호네모동그라미", "롤체나해야지"] #need full name
 
 
-while(1):
-    a="https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+my_name+'?api_key='+api_key
-    r=requests.get(a)
-    id=r.json()['id']
-    b="https://kr.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/"+id+"?api_key="+api_key
-    r=requests.get(b)
-    try:
-        r.json()['gameId']
-    except KeyError:
-        print_namelist_status()
-        continue
-
-    a=r.json()['participants']
-    teamId=0
-    for i in range(10):
-        if(a[i]['summonerName']==my_name):
-            teamId=a[i]['teamId']
-    opponent_runeId_list=[]
-    opponent_name_list=[]
-    if(teamId==200):
-        for i in range(0, 5):
-            opponent_runeId_list.append(a[i]['perks']['perkIds'])
-            opponent_name_list.append(a[i]['summonerName'])
-        for i in range(0,5):
-            for j in range(0,9):
-                opponent_runeId_list[i][j]=runeId_to_print_rune(opponent_runeId_list[i][j])
-    if(teamId==100):
-        for i in range(5, 10):
-            opponent_runeId_list.append(a[i]['perks']['perkIds'])
-            opponent_name_list.append(a[i]['summonerName'])
-        print(opponent_runeId_list)
-        for i in range(0, 5):
-            for j in range(0,9):
-                opponent_runeId_list[i][j]=runeId_to_print_rune(opponent_runeId_list[i][j])
-    for i in range(5):
-        print(opponent_name_list[i])
-        print(opponent_runeId_list[i])
-    break
-
 def print_namelist_status():
     for name in namelist:
         a="https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+name+'?api_key='+api_key
@@ -210,3 +171,44 @@ def runeId_to_print_rune(a):
         return '물 위를 걷는 자'
     elif(a==8236):
         return '폭풍의 결집'
+
+
+while(1):
+    a="https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+my_name+'?api_key='+api_key
+    r=requests.get(a)
+    id=r.json()['id']
+    b="https://kr.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/"+id+"?api_key="+api_key
+    r=requests.get(b)
+    try:
+        r.json()['gameId']
+    except KeyError:
+        print_namelist_status()
+        continue
+
+    a=r.json()['participants']
+    teamId=0
+    for i in range(10):
+        if(a[i]['summonerName']==my_name):
+            teamId=a[i]['teamId']
+    opponent_runeId_list=[]
+    opponent_name_list=[]
+    if(teamId==200):
+        for i in range(0, 5):
+            opponent_runeId_list.append(a[i]['perks']['perkIds'])
+            opponent_name_list.append(a[i]['summonerName'])
+        for i in range(0,5):
+            for j in range(0,9):
+                opponent_runeId_list[i][j]=runeId_to_print_rune(opponent_runeId_list[i][j])
+    if(teamId==100):
+        for i in range(5, 10):
+            opponent_runeId_list.append(a[i]['perks']['perkIds'])
+            opponent_name_list.append(a[i]['summonerName'])
+        print(opponent_runeId_list)
+        for i in range(0, 5):
+            for j in range(0,9):
+                opponent_runeId_list[i][j]=runeId_to_print_rune(opponent_runeId_list[i][j])
+    for i in range(5):
+        print(opponent_name_list[i])
+        print(opponent_runeId_list[i])
+    break
+
