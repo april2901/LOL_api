@@ -8,10 +8,10 @@ except AttributeError:
     raise RuntimeError("Use IDLE")
 
 
-api_key='RGAPI-31b1990e-b0f2-4faf-8d8b-d623b4f793e5'
+api_key=''  #본인의 라이엇 api key입력 (https://developer.riotgames.com/ 에서 발급)
 
-my_name="하얗고예쁨"
-namelist=["로지택키보드","샘호네모동그라미", "롤체나해야지", "AnWall"] #need full name
+my_name=""  #본인 롤 닉네임 입력
+namelist=[] #친구들 롤 닉네임 입력
 
 
 def print_namelist_status():
