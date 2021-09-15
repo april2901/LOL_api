@@ -8,10 +8,10 @@ except AttributeError:
     raise RuntimeError("Use IDLE")
 
 
-api_key='RGAPI-9a082e3c-0a84-4bba-a5ae-00e8ff9052bf'
+api_key='RGAPI-31b1990e-b0f2-4faf-8d8b-d623b4f793e5'
 
-my_name="april2901"
-namelist=["로지택키보드","샘호네모동그라미", "롤체나해야지"] #need full name
+my_name="하얗고예쁨"
+namelist=["로지택키보드","샘호네모동그라미", "롤체나해야지", "AnWall"] #need full name
 
 
 def print_namelist_status():
@@ -171,6 +171,18 @@ def runeId_to_print_rune(a):
         return '물 위를 걷는 자'
     elif(a==8236):
         return '폭풍의 결집'
+    elif(a==5008):
+        return '적응형능력치+9'
+    elif(a==5003):
+        return '마법저항력+8'
+    elif(a==5005):
+        return '공격속도+10%'
+    elif(a==5002):
+        return '방어력+6'
+    elif(a==5007):
+        return '스킬가속+8'
+    elif(a==5001):
+        return '체력+15~90'
 
 
 while(1):
@@ -203,7 +215,6 @@ while(1):
         for i in range(5, 10):
             opponent_runeId_list.append(a[i]['perks']['perkIds'])
             opponent_name_list.append(a[i]['summonerName'])
-        print(opponent_runeId_list)
         for i in range(0, 5):
             for j in range(0,9):
                 opponent_runeId_list[i][j]=runeId_to_print_rune(opponent_runeId_list[i][j])
